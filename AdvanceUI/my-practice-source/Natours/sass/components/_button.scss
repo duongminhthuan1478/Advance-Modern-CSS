@@ -1,0 +1,97 @@
+.btn {
+  &, // Nothing pseudo-classs, this to appy all properties to button
+  &:link,
+  &:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.5rem 4rem;
+    display: inline-block;
+    border-radius: 10rem;
+    transition: all 0.2s;
+    font-size: $default-font-size;
+    position: relative;
+     // Change for the <button> element
+    border: none;
+    cursor: pointer;
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 1rem 2rem 0 rgba($color-black, 0.2);
+
+    &::after {
+      transform: scaleX(1.4) scaleY(1.6);
+      opacity: 0;
+    }
+  }
+
+  &:active, &:focus {
+    transform: translateY(-1px);
+    box-shadow: 0 0.5rem 1rem 0 rgba($color-black, 0.2);
+  }
+
+  &--white {
+    background-color: $color-white;
+    color: $color-grey-dark;
+
+    &::after {
+      background-color: $color-white;
+    }
+  }
+
+   &--green {
+    background-color: $color-primary;
+    color: $color-white;
+
+    &::after {
+      background-color: $color-primary;
+    }
+  }
+
+  &::after {
+    content: "";
+    display: inline-block;
+    height: 100%; /** Width is calculated based on .btn height and width*/
+    width: 100%;
+    border-radius: 10rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all 0.4s;
+  }
+
+  &--animated {
+    animation: moveInBottom 0.5s ease-out 0.75s; /* name duration function delay*/
+    /** Automatically apply styles at 0% of moveInBottom before start animation: Ex context below
+    vì delay 0.75s nên moveInBottom chạy trước opacity -> làm cho button được hiển thị ra sẵn nhưng button chưa chạy animation vì đang delay, 
+    dùng animation-fill-mode: backwards để ngăn chặn điều này
+    => sau 0.75s mới bắt đầu hiển thị button và chạy animation
+  */
+    animation-fill-mode: backwards;
+  }
+}
+
+.btn-text {
+  &:link,
+  &:visited {
+    font-size: $default-font-size;
+    color: $color-primary;
+    display: inline-block;
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+    padding: 3px;
+  }
+
+  &:hover {
+    background-color: $color-primary;
+    color: $color-white;
+    box-shadow: 0 1rem 2rem rgba($color-black, .15);
+    transform:  translateY(-2px);
+  }
+
+  &:active {
+    box-shadow: 0 0.5rem 1rem rgba($color-black, .15);
+    transform:  translateY(0);
+  }
+}
